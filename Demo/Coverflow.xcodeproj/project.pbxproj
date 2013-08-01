@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F06BC8E17A635F100172800 /* DirectToYoutubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F06BC8D17A635F100172800 /* DirectToYoutubeView.m */; };
-		0F17BA8817A7596000998999 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F17BA8717A7596000998999 /* Reachability.m */; };
 		0F17BA8B17A7598300998999 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F17BA8A17A7598300998999 /* SystemConfiguration.framework */; };
 		0F3EFA4717A40D2B0054F138 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3EFA4617A40D2B0054F138 /* star.png */; };
 		0F3EFA4B17A40E0C0054F138 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3EFA4A17A40E0C0054F138 /* home.png */; };
@@ -22,6 +21,7 @@
 		0F98104417A8A4E10007C8CE /* mp3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F98104317A8A4E10007C8CE /* mp3.png */; };
 		0F98104617A8A6090007C8CE /* fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F98104517A8A6090007C8CE /* fb.png */; };
 		0F9811C717AAEEFD007E743D /* xmlParsingClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9811C617AAEEFD007E743D /* xmlParsingClass.m */; };
+		0F9811CA17AAF046007E743D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9811C917AAF046007E743D /* Reachability.m */; };
 		0F9AC83E17A5C1D500ECAE91 /* FavoritesTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AC83D17A5C1D500ECAE91 /* FavoritesTable.m */; };
 		0F9AC84017A5E15600ECAE91 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9AC83F17A5E15600ECAE91 /* CoreData.framework */; };
 		0F9AC87517A5E75200ECAE91 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AC87417A5E75200ECAE91 /* Song.m */; };
@@ -53,8 +53,6 @@
 /* Begin PBXFileReference section */
 		0F06BC8C17A635F100172800 /* DirectToYoutubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectToYoutubeView.h; sourceTree = "<group>"; };
 		0F06BC8D17A635F100172800 /* DirectToYoutubeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectToYoutubeView.m; sourceTree = "<group>"; };
-		0F17BA8617A7596000998999 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "../../Reachability-master/Reachability.h"; sourceTree = "<group>"; };
-		0F17BA8717A7596000998999 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "../../Reachability-master/Reachability.m"; sourceTree = "<group>"; };
 		0F17BA8A17A7598300998999 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0F3EFA4617A40D2B0054F138 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		0F3EFA4A17A40E0C0054F138 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
@@ -73,6 +71,8 @@
 		0F98104517A8A6090007C8CE /* fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb.png; sourceTree = "<group>"; };
 		0F9811C517AAEEFD007E743D /* xmlParsingClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmlParsingClass.h; sourceTree = "<group>"; };
 		0F9811C617AAEEFD007E743D /* xmlParsingClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xmlParsingClass.m; sourceTree = "<group>"; };
+		0F9811C817AAF046007E743D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		0F9811C917AAF046007E743D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		0F9AC83C17A5C1D500ECAE91 /* FavoritesTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesTable.h; path = Coverflow/FavoritesTable.h; sourceTree = "<group>"; };
 		0F9AC83D17A5C1D500ECAE91 /* FavoritesTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesTable.m; path = Coverflow/FavoritesTable.m; sourceTree = "<group>"; };
 		0F9AC83F17A5E15600ECAE91 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -138,8 +138,8 @@
 		0F17BA8917A7596A00998999 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				0F17BA8617A7596000998999 /* Reachability.h */,
-				0F17BA8717A7596000998999 /* Reachability.m */,
+				0F9811C817AAF046007E743D /* Reachability.h */,
+				0F9811C917AAF046007E743D /* Reachability.m */,
 			);
 			name = Reachability;
 			sourceTree = "<group>";
@@ -381,8 +381,8 @@
 				0F9AC87517A5E75200ECAE91 /* Song.m in Sources */,
 				0F9AC87817A5F94000ECAE91 /* lyricsView.m in Sources */,
 				0F06BC8E17A635F100172800 /* DirectToYoutubeView.m in Sources */,
-				0F17BA8817A7596000998999 /* Reachability.m in Sources */,
 				0F9811C717AAEEFD007E743D /* xmlParsingClass.m in Sources */,
+				0F9811CA17AAF046007E743D /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
