@@ -10,13 +10,14 @@
 #import "SingleTon.h"
 
 
-@interface VCForOptions : UIViewController <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate,UITextFieldDelegate>
+@interface VCForOptions : UIViewController <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate,UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *labelForSongName;
 @property (strong, nonatomic) SingleTon *theSingleTon;
 @property (weak, nonatomic) IBOutlet UITableView *tableForOptions;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
-@property (weak, nonatomic) IBOutlet UITextField *textForLyrics;
-@property NSMutableArray *savedSongNames;
+@property (strong, nonatomic) IBOutlet UITextView *textForLyrics;
+
+@property (strong, nonatomic) NSMutableArray *savedSongNames;
 
 @end

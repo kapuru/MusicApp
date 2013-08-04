@@ -31,8 +31,8 @@
 {
     [super viewDidLoad];
     self.singleForYt = [SingleTon manager];
+    self.webView.scalesPageToFit = YES;
     self.webView.delegate = self;
-    [self.webView scalesPageToFit];
 }
 
 
@@ -71,7 +71,7 @@
         [self.webView loadRequest:request];
     }
     if(self.singleForYt.indexRow == 3){
-            NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/search?q=%@+lyrics",formattedString]];
+            NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/search?q=%@+lyrics+azlyrics",formattedString]];
             NSURLRequest *request=[NSURLRequest requestWithURL:url];
             [self.webView loadRequest:request];
     }
@@ -97,6 +97,17 @@
         NSURLRequest *request=[NSURLRequest requestWithURL:url];
         [self.webView loadRequest:request];
     }
+    /*
+    if (self.singleForYt.indexRow == 6){
+        NSRange rangeOfSubstring = [formattedString rangeOfString:@"-"];
+        self.singleForYt.artistName = [formattedString substringFromIndex:rangeOfSubstring.location];
+        self.singleForYt.artistName = [self.singleForYt.artistName stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        NSLog(@"%@",self.singleForYt.artistName);
+        
+        jsonArtists *json = [[jsonArtists alloc]init];
+        [json executeJson];
+    }
+    */
 }
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{

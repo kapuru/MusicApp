@@ -9,6 +9,7 @@
 #import "VCForOptions.h"
 #import "CDemoCollectionViewController.h"
 #import "Song.h"
+#import "jsonArtists.h"
 
 @interface VCForOptions ()
 
@@ -51,11 +52,9 @@
             [self.savedSongNames addObject:[[self.theSingleTon.songs objectAtIndex:i] songName]];
         }
     }
-    
-    
+
     UIBarButtonItem *addFav = [[UIBarButtonItem alloc] initWithTitle:@"Add To Favorites" style:UIBarButtonItemStylePlain target:self action:@selector(toolbarItemTapped:)];
     self.navigationItem.rightBarButtonItem = addFav;
-    
     [self.textForLyrics setDelegate:self];
 }
 
@@ -75,7 +74,6 @@
     newSong.pictureURL = self.theSingleTon.pictureURL;
     
     // find current song name in the saved array ??
-    NSLog(@"%@",self.theSingleTon.songString);
     
     if([self.savedSongNames containsObject:self.theSingleTon.songString]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"This Song Already is a Favorite!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
@@ -108,7 +106,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -145,13 +143,38 @@
     }
     if(indexPath.row == 5){
         cell.textLabel.text = @"Post";
-        cell.imageView.image = [UIImage imageNamed:@"fb.png"];
+        cell.imageView.image = [UIImage imageNamed:@"post.png"];
+    }
+    if(indexPath.row == 6){
+        cell.textLabel.text = @"Top songs by this Artist";
+        cell.imageView.image = [UIImage imageNamed:@"artist.png"];
     }
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 6){
+        NSString *searchString= self.theSingleTon.songString;
+        
+        NSString *formattedString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"&" withString:@"+"];
+        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"“" withString:@"+"];
+        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"”" withString:@"+"];
+        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"'" withString:@"+"];
+        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"’" withString:@"+"];
+        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"é" withString:@"+"];
+        
+        NSRange rangeOfSubstring = [formattedString rangeOfString:@"-"];
+        self.theSingleTon.artistName = [formattedString substringFromIndex:rangeOfSubstring.location];
+        self.theSingleTon.artistName = [self.theSingleTon.artistName stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        
+        jsonArtists *json = [[jsonArtists alloc]init];
+        [json executeJson];
+        
+        self.theSingleTon.indexRow = indexPath.row;
+        [self.navigationController.viewControllers[1] performSegueWithIdentifier:@"segwayForLastFmArtists" sender:self];
+    }
     if (indexPath.row == 5){
         
         NSData *postImageData = [NSData dataWithContentsOfURL: [NSURL URLWithString: self.theSingleTon.pictureURL]];
@@ -165,17 +188,21 @@
         
         [self presentViewController:activityController animated:YES completion:nil];
     }
-    else{
+    if(indexPath.row ==0 || indexPath.row ==1 || indexPath.row ==2 || indexPath.row == 3 || indexPath.row == 4)
+    {
     self.theSingleTon.indexRow = indexPath.row;
     [self.navigationController.viewControllers[1] performSegueWithIdentifier:@"segwayGoToOption" sender:self];
     }
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 30;
+}
+
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     [self.textForLyrics resignFirstResponder];
     return YES;
 }
-
 
 - (void)didReceiveMemoryWarning
 {

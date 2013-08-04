@@ -32,8 +32,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CDemoCollectionViewController : UICollectionViewController
-@property (weak, nonatomic) IBOutlet UITextField *textForYouTube;
-@property (weak, nonatomic) IBOutlet UISwitch *switchForInternet;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityLoadingIndicator;
 
 
 @end

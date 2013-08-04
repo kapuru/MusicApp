@@ -40,6 +40,64 @@
             </objects>
             <point key="canvasLocation" x="977" y="211"/>
         </scene>
+        <!--View For Artist Song LastFM-->
+        <scene sceneID="3vl-f7-uh3">
+            <objects>
+                <viewController id="C0X-8i-rSm" customClass="ViewForArtistSongLastFM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EbM-8f-NHz">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="Gbj-oU-sGh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zOg-Nu-UxG"/>
+                    <connections>
+                        <outlet property="webV" destination="Gbj-oU-sGh" id="3A6-8Q-Q3m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fia-5g-YcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2303" y="-916"/>
+        </scene>
+        <!--Table For Artist - Top 20 on Last FM-->
+        <scene sceneID="BXg-kb-dyc">
+            <objects>
+                <tableViewController id="hJh-tv-LZq" customClass="TableForArtist" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OKa-7a-u2c">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="kAh-6a-iFc">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="C0X-8i-rSm" kind="push" identifier="segwayForArtistLink" id="oRB-BG-bsb"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hJh-tv-LZq" id="Xe2-23-rFC"/>
+                            <outlet property="delegate" destination="hJh-tv-LZq" id="bDT-sN-Peb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Top 20 on Last FM" id="g3r-to-nOM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ff-jr-ti3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1874" y="-451"/>
+        </scene>
         <!--Lyrics View - Lyrics-->
         <scene sceneID="iDo-Pb-In9">
             <objects>
@@ -48,33 +106,33 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="45" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="smO-bL-y97">
-                                <rect key="frame" x="31" y="141" width="258" height="296"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xqX-gW-Ncd">
-                                <rect key="frame" x="150" y="20" width="150" height="100"/>
+                                <rect key="frame" x="149" y="20" width="151" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="D3X-m9-bIF">
-                                <rect key="frame" x="20" y="11" width="112" height="109"/>
+                                <rect key="frame" x="11" y="20" width="126" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" id="4w6-mg-yvm">
+                                <rect key="frame" x="27" y="180" width="263" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Lyrics" id="uzC-NM-8Jx"/>
                     <connections>
                         <outlet property="imageV" destination="D3X-m9-bIF" id="DEM-bd-7ax"/>
-                        <outlet property="labelForLyrics" destination="smO-bL-y97" id="SuY-Pa-oUT"/>
                         <outlet property="labelForSongName" destination="xqX-gW-Ncd" id="Qf8-on-Zmh"/>
+                        <outlet property="textViewLyrics" destination="4w6-mg-yvm" id="brR-ow-YfC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZK-Vl-NkF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -116,20 +174,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Top 50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LfD-Mc-ZQg">
-                                            <rect key="frame" x="64" y="1" width="72" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="bnL-P1-tcf">
                                             <rect key="frame" x="0.0" y="30" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="STE-ws-qBe" customClass="CReflectionView">
-                                            <rect key="frame" x="0.0" y="249" width="200" height="51"/>
+                                            <rect key="frame" x="-54" y="249" width="309" height="51"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -149,59 +200,20 @@
                             <outlet property="delegate" destination="iqT-33-eDE" id="9Wv-8M-egY"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="XoM-04-aNX">
-                        <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" width="1" style="plain" id="v2W-GD-wHm">
-                            <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Youtube" minimumFontSize="17" id="6xz-Ay-YlJ">
-                                <rect key="frame" x="5" y="7" width="122" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <connections>
-                                <segue destination="usS-Sb-cpu" kind="push" identifier="segwayForDirectYoutube" id="xTb-cm-0ib"/>
-                            </connections>
-                        </barButtonItem>
-                        <switch key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="1hU-ux-nfq">
-                            <rect key="frame" x="135" y="9" width="79" height="27"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </switch>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="iTunes Top 50" id="XoM-04-aNX"/>
                     <connections>
-                        <outlet property="switchForInternet" destination="1hU-ux-nfq" id="ruY-E3-yfd"/>
-                        <outlet property="textForYouTube" destination="6xz-Ay-YlJ" id="KlU-tq-55M"/>
+                        <outlet property="activityLoadingIndicator" destination="Q1U-87-4BE" id="EE3-z1-ZzI"/>
                         <outlet property="view" destination="vQu-eI-Zwp" id="Bnz-q0-hmZ"/>
                         <segue destination="XSy-WJ-XlR" kind="push" identifier="segwayForOptionsVC" id="XHL-Av-AKm"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OBc-dU-V2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="Q1U-87-4BE">
+                    <rect key="frame" x="142" y="209" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </activityIndicatorView>
             </objects>
             <point key="canvasLocation" x="738" y="-1115"/>
-        </scene>
-        <!--Direct To Youtube View-->
-        <scene sceneID="gOW-qr-njE">
-            <objects>
-                <viewController id="usS-Sb-cpu" customClass="DirectToYoutubeView" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cSh-J6-nr2">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" id="D37-om-Pju">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Noh-T3-kVp"/>
-                    <connections>
-                        <outlet property="webViewForYt" destination="D37-om-Pju" id="8Ju-84-cCd"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1mL-Xk-OKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1339" y="-1338"/>
         </scene>
         <!--For Options-->
         <scene sceneID="uLp-Y5-HmJ">
@@ -212,27 +224,36 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MID-VF-ns2">
-                                <rect key="frame" x="134" y="0.0" width="175" height="100"/>
+                                <rect key="frame" x="150" y="20" width="150" height="131"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0wH-Dn-Go2">
+                                <rect key="frame" x="10" y="222" width="300" height="233"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="oqf-Zp-pB8">
+                                <rect key="frame" x="10" y="20" width="130" height="131"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" id="PxI-iB-J3N">
+                                <rect key="frame" x="10" y="181" width="290" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Paste Lyrics Here:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bu1-lY-vDe">
+                                <rect key="frame" x="10" y="159" width="175" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0wH-Dn-Go2">
-                                <rect key="frame" x="0.0" y="188" width="320" height="267"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="oqf-Zp-pB8">
-                                <rect key="frame" x="6" y="20" width="120" height="129"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paste Lyrics Here" textAlignment="center" minimumFontSize="17" id="U3D-8h-Vef">
-                                <rect key="frame" x="158" y="125" width="142" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -245,8 +266,9 @@
                         <outlet property="imageV" destination="oqf-Zp-pB8" id="4U8-Ga-x9m"/>
                         <outlet property="labelForSongName" destination="MID-VF-ns2" id="G3j-Oo-Lay"/>
                         <outlet property="tableForOptions" destination="0wH-Dn-Go2" id="yNV-Kc-1Ju"/>
-                        <outlet property="textForLyrics" destination="U3D-8h-Vef" id="nwF-s0-R36"/>
+                        <outlet property="textForLyrics" destination="PxI-iB-J3N" id="vr9-82-iGx"/>
                         <segue destination="D5p-uj-aZx" kind="push" identifier="segwayGoToOption" id="aOs-XM-Rfy"/>
+                        <segue destination="hJh-tv-LZq" kind="push" identifier="segwayForLastFmArtists" id="Jsd-ip-8Mh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6E-oE-wT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HTr-qy-KBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798" y="-731"/>
+            <point key="canvasLocation" x="1782" y="-1687"/>
         </scene>
         <!--Navigation Controller - iTunes-->
         <scene sceneID="pzO-eg-eLf">

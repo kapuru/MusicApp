@@ -52,6 +52,7 @@
 
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
+    
     if ([self.name length] > 0 &&
         ![self.name isEqualToString:@"iTunes Store: Top Songs"])
     {

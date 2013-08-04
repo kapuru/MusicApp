@@ -1,18 +1,18 @@
 //
-//  lyricsView.m
+//  ViewForArtistSongLastFM.m
 //  Coverflow
 //
-//  Created by Udit Kapur on 7/28/13.
+//  Created by Udit Kapur on 8/3/13.
 //  Copyright (c) 2013 toxicsoftware. All rights reserved.
 //
 
-#import "lyricsView.h"
+#import "ViewForArtistSongLastFM.h"
 
-@interface lyricsView ()
+@interface ViewForArtistSongLastFM ()
 
 @end
 
-@implementation lyricsView
+@implementation ViewForArtistSongLastFM
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,18 +26,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.singleton = [SingleTon manager];
 	// Do any additional setup after loading the view.
+    
+    self.singleton = [SingleTon manager];
+    self.webV.scalesPageToFit = YES;
+    self.webV.delegate = self;
+    NSURL *url = [NSURL URLWithString:self.singleton.selectedArtistSongURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [self.webV loadRequest:requestObj];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    self.imageV.image = self.singleton.thisSongImage;
-    self.labelForSongName.text = self.singleton.songString;
-    self.textViewLyrics.backgroundColor = [UIColor clearColor];
-    self.textViewLyrics.textColor = [UIColor whiteColor];
-    //[self.textViewLyrics isScrollEnabled];
-    self.textViewLyrics.text = self.singleton.thisSongsLyrics;
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

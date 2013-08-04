@@ -12,6 +12,6 @@
 
 @interface VCForYoutube : UIViewController <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property SingleTon *singleForYt;
+@property (strong, nonatomic) SingleTon *singleForYt;
 
 @end

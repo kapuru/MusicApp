@@ -50,47 +50,44 @@
 @property (readwrite, nonatomic, strong) NSCache *imageCache;
 @property (readwrite, nonatomic, strong) NSArray *songNames;
 @property (readwrite, nonatomic, strong) SingleTon *theSingleTon;
+@property (readwrite, nonatomic, strong) NSMutableArray *imageArray;
 
 @end
 
 @implementation CDemoCollectionViewController
 
 - (void)viewDidLoad{
+    
+    
 	[super viewDidLoad];
-    [self.switchForInternet setEnabled:NO];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.theSingleTon = [SingleTon manager];
-	self.cellCount = 50;
-	self.imageCache = [[NSCache alloc] init];
+    self.activityLoadingIndicator.frame = CGRectMake(350, 100, 80, 80);
+    [self.view addSubview:self.activityLoadingIndicator];
     
-	[self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CCoverflowTitleView class]) bundle:NULL] forSupplementaryViewOfKind:@"title" withReuseIdentifier:@"title"];
+    [self.activityLoadingIndicator startAnimating];
     
-    xmlParsingClass *xmlPar = [[xmlParsingClass alloc]init];
-    [xmlPar executeXML];
-    self.songNames = xmlPar.songsForXML;
-    self.assets = xmlPar.pictureLinks;
-	self.cellCount = self.assets.count;
+    	[self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CCoverflowTitleView class]) bundle:NULL] forSupplementaryViewOfKind:@"title" withReuseIdentifier:@"title"];
     
-    UIBarButtonItem *go = [[UIBarButtonItem alloc] initWithTitle:@"          Go          " style:UIBarButtonItemStylePlain target:self action:@selector(toolbarItemTapped:)];
-    self.navigationItem.rightBarButtonItem = go;
 }
 
 
--(void)viewWillAppear:(BOOL)animated{
-
+-(void)viewDidAppear:(BOOL)animated{
+    
+    self.activityLoadingIndicator.frame = CGRectMake(350, 100, 80, 80);
+    [self.activityLoadingIndicator setHidden:NO];
+    [self.activityLoadingIndicator startAnimating];
+    
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     
     // Set the blocks
     reach.reachableBlock = ^(Reachability*reach)
     {
         [self performSelectorOnMainThread:@selector(updateFunctionON) withObject:nil waitUntilDone:NO];
-        NSLog(@"Reachable");
     };
     
     reach.unreachableBlock = ^(Reachability*reach)
     {
         [self performSelectorOnMainThread:@selector(updateFunctionOFF) withObject:nil waitUntilDone:NO];
-        NSLog(@"Unreachable!");
     };
     
     // Start the notifier, which will cause the reachability object to retain itself!
@@ -98,27 +95,48 @@
 }
 
 -(void)updateFunctionON{
-    [self.switchForInternet setOn:YES];
+    self.navigationItem.rightBarButtonItem = NULL;
+    
+    self.imageArray = [[NSMutableArray alloc]init];
+    self.theSingleTon = [SingleTon manager];
+    
     xmlParsingClass *xmlPar = [[xmlParsingClass alloc]init];
     [xmlPar executeXML];
     self.songNames = xmlPar.songsForXML;
     self.assets = xmlPar.pictureLinks;
-	self.cellCount = self.assets.count;
+    
+    for (NSString *element in self.assets){
+        NSURL *theURL = [NSURL URLWithString:element];
+        NSData *imageData = [[NSData alloc]initWithContentsOfURL:theURL];
+        UIImage *theImage = [UIImage imageWithData:imageData];
+        [self.imageArray addObject:theImage];
+    }
+    
+    [self.activityLoadingIndicator stopAnimating];
+    [self.activityLoadingIndicator setHidden:YES];
+    
+    
+    
     [self.collectionView reloadData];
 }
 -(void)updateFunctionOFF{
-    [self.switchForInternet setOn:NO];
-    self.songNames = nil;
-    self.assets = nil;
+    //[self.switchForInternet setOn:NO];
+    
+    UIBarButtonItem *go = [[UIBarButtonItem alloc] initWithTitle:@"Offline" style:UIBarButtonItemStylePlain target:self action:@selector(toolbarItemTapped:)];
+    
+    self.navigationItem.rightBarButtonItem = go;
+    self.assets = [[NSArray alloc]init];
+    self.songNames = [[NSArray alloc]init];
+    self.songNames = NULL;
+    self.assets = NULL;
 	[self.collectionView reloadData];
 }
 
--(IBAction)toolbarItemTapped:(id)sender{
-    self.theSingleTon.youtubeSearchQuery = self.textForYouTube.text;
-    [self.textForYouTube resignFirstResponder];
-    self.textForYouTube.text = @"";
-    [self.navigationController.viewControllers[0] performSegueWithIdentifier:@"segwayForDirectYoutube" sender:self];
+-(void)toolbarItemTapped: (id) sender{
+    
 }
+
+
 #pragma mark -
 
 - (void)updateTitle
@@ -144,7 +162,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
 	{
-	return(self.cellCount);
+	return(self.imageArray.count);
 	}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
@@ -158,7 +176,7 @@
 
 	theCell.backgroundColor = [UIColor colorWithHue:(float)indexPath.row / (float)self.cellCount saturation:0.333 brightness:1.0 alpha:1.0];
 
-
+        /*
 		NSURL *theURL = [NSURL URLWithString:[self.assets objectAtIndex:indexPath.row]];
         NSData *imageData = [[NSData alloc]initWithContentsOfURL:theURL];
         UIImage *theImage = [UIImage imageWithData:imageData];
@@ -168,9 +186,9 @@
 			theImage = [UIImage imageWithContentsOfFile:theURL.path];
 			[self.imageCache setObject:theImage forKey:theURL];
 			}
-
-		theCell.imageView.image = theImage;
-		theCell.reflectionImageView.image = theImage;
+         */
+		theCell.imageView.image = [self.imageArray objectAtIndex:indexPath.row];
+		theCell.reflectionImageView.image = [self.imageArray objectAtIndex:indexPath.row];
 		theCell.backgroundColor = [UIColor clearColor];
 
         

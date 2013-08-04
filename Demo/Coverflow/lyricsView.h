@@ -10,9 +10,9 @@
 #import "SingleTon.h"
 
 @interface lyricsView : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *labelForLyrics;
-@property SingleTon *singleton;
+@property (strong, nonatomic) SingleTon *singleton;
 @property (weak, nonatomic) IBOutlet UILabel *labelForSongName;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
+@property (weak, nonatomic) IBOutlet UITextView *textViewLyrics;
 
 @end

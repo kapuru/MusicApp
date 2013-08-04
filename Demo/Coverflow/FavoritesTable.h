@@ -11,7 +11,7 @@
 
 @interface FavoritesTable : UITableViewController
 
-@property NSMutableArray *songs;
-@property SingleTon *singeton;
+@property (strong, nonatomic) NSMutableArray *songs;
+@property (strong, nonatomic) SingleTon *singeton;
 
 @end

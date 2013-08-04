@@ -25,6 +25,12 @@
 @property (strong, nonatomic) NSString *youtubeSearchQuery;
 @property (strong, nonatomic) UIImage *thisSongImage;
 
+@property (strong, nonatomic) NSString *artistName;
+@property (strong, nonatomic) NSMutableArray *artistSongNames;
+@property (strong, nonatomic) NSMutableArray *artistSongURLs;
+
+@property (strong, nonatomic) NSString *selectedArtistSongURL;
+
 +(id)manager;
 
 @end

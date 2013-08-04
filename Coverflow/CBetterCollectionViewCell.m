@@ -65,7 +65,7 @@
 		{
 		if (self.debugInfoLabel == NULL)
 			{
-			self.debugInfoLabel = [[UILabel alloc] initWithFrame:CGRectInset(self.bounds, 20, 20)];
+			self.debugInfoLabel = [[UILabel alloc] initWithFrame:CGRectInset(self.bounds, 100, 100)];
 			self.debugInfoLabel.numberOfLines = 0;
 			self.debugInfoLabel.lineBreakMode = NSLineBreakByCharWrapping;
 			self.debugInfoLabel.backgroundColor = [UIColor clearColor];

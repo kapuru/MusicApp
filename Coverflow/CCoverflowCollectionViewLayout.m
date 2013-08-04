@@ -73,8 +73,8 @@
 
 - (void)setup
 	{
-    self.cellSize = (CGSize){ 200.0f, 300.0f };
-    self.cellSpacing = 40.0f;
+    self.cellSize = (CGSize){ 120.0f, 220.0f };
+    self.cellSpacing = 30.0f;
 	self.snapToCells = YES;
 
     self.positionoffsetInterpolator = [[CInterpolator interpolatorWithDictionary:@{
