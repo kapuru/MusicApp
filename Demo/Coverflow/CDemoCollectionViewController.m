@@ -61,21 +61,41 @@
     
 	[super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.activityLoadingIndicator.frame = CGRectMake(350, 100, 80, 80);
-    [self.view addSubview:self.activityLoadingIndicator];
+
     
-    [self.activityLoadingIndicator startAnimating];
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CCoverflowTitleView class]) bundle:NULL] forSupplementaryViewOfKind:@"title" withReuseIdentifier:@"title"];
     
-    	[self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CCoverflowTitleView class]) bundle:NULL] forSupplementaryViewOfKind:@"title" withReuseIdentifier:@"title"];
     
+    self.imageArray = [[NSMutableArray alloc]init];
+    self.theSingleTon = [SingleTon manager];
+    
+    dispatch_async(dispatch_queue_create("Dispatch For Parsing", NULL), ^{
+        self.activityLoadingIndicator.frame = CGRectMake(120, 100, 80, 80);
+        [self.activityLoadingIndicator startAnimating];
+        [self.view addSubview:self.activityLoadingIndicator];
+        
+        xmlParsingClass *xmlPar = [[xmlParsingClass alloc]init];
+        [xmlPar executeXML];
+        self.songNames = xmlPar.songsForXML;
+        self.assets = xmlPar.pictureLinks;
+        
+        for (NSString *element in self.assets){
+            NSURL *theURL = [NSURL URLWithString:element];
+            NSData *imageData = [[NSData alloc]initWithContentsOfURL:theURL];
+            UIImage *theImage = [UIImage imageWithData:imageData];
+            [self.imageArray addObject:theImage];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem = NULL;
+        [self.collectionView reloadData];
+        [self.activityLoadingIndicator stopAnimating];
+        [self.activityLoadingIndicator setHidden:YES];
+        });
+    });
 }
 
 
 -(void)viewDidAppear:(BOOL)animated{
-    
-    self.activityLoadingIndicator.frame = CGRectMake(350, 100, 80, 80);
-    [self.activityLoadingIndicator setHidden:NO];
-    [self.activityLoadingIndicator startAnimating];
     
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     
@@ -96,28 +116,6 @@
 
 -(void)updateFunctionON{
     self.navigationItem.rightBarButtonItem = NULL;
-    
-    self.imageArray = [[NSMutableArray alloc]init];
-    self.theSingleTon = [SingleTon manager];
-    
-    xmlParsingClass *xmlPar = [[xmlParsingClass alloc]init];
-    [xmlPar executeXML];
-    self.songNames = xmlPar.songsForXML;
-    self.assets = xmlPar.pictureLinks;
-    
-    for (NSString *element in self.assets){
-        NSURL *theURL = [NSURL URLWithString:element];
-        NSData *imageData = [[NSData alloc]initWithContentsOfURL:theURL];
-        UIImage *theImage = [UIImage imageWithData:imageData];
-        [self.imageArray addObject:theImage];
-    }
-    
-    [self.activityLoadingIndicator stopAnimating];
-    [self.activityLoadingIndicator setHidden:YES];
-    
-    
-    
-    [self.collectionView reloadData];
 }
 -(void)updateFunctionOFF{
     //[self.switchForInternet setOn:NO];

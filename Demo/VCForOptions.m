@@ -155,23 +155,23 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 6){
-        NSString *searchString= self.theSingleTon.songString;
-        
-        NSString *formattedString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"&" withString:@"+"];
-        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"“" withString:@"+"];
-        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"”" withString:@"+"];
-        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"'" withString:@"+"];
-        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"’" withString:@"+"];
-        formattedString = [formattedString stringByReplacingOccurrencesOfString:@"é" withString:@"+"];
-        
-        NSRange rangeOfSubstring = [formattedString rangeOfString:@"-"];
-        self.theSingleTon.artistName = [formattedString substringFromIndex:rangeOfSubstring.location];
-        self.theSingleTon.artistName = [self.theSingleTon.artistName stringByReplacingOccurrencesOfString:@"-" withString:@""];
-        
-        jsonArtists *json = [[jsonArtists alloc]init];
-        [json executeJson];
-        
+            NSString *searchString= self.theSingleTon.songString;
+            
+            NSString *formattedString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+            formattedString = [formattedString stringByReplacingOccurrencesOfString:@"&" withString:@"+"];
+            formattedString = [formattedString stringByReplacingOccurrencesOfString:@"“" withString:@"+"];
+            formattedString = [formattedString stringByReplacingOccurrencesOfString:@"”" withString:@"+"];
+            formattedString = [formattedString stringByReplacingOccurrencesOfString:@"'" withString:@"+"];
+            formattedString = [formattedString stringByReplacingOccurrencesOfString:@"’" withString:@"+"];
+            formattedString = [formattedString stringByReplacingOccurrencesOfString:@"é" withString:@"+"];
+            
+            NSRange rangeOfSubstring = [formattedString rangeOfString:@"-"];
+            self.theSingleTon.artistName = [formattedString substringFromIndex:rangeOfSubstring.location];
+            self.theSingleTon.artistName = [self.theSingleTon.artistName stringByReplacingOccurrencesOfString:@"-" withString:@""];
+            
+            jsonArtists *json = [[jsonArtists alloc]init];
+            [json executeJson];
+ 
         self.theSingleTon.indexRow = indexPath.row;
         [self.navigationController.viewControllers[1] performSegueWithIdentifier:@"segwayForLastFmArtists" sender:self];
     }
